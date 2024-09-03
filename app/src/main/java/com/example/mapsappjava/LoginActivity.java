@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 // setting response to text view.
                 responseTV.setText("Response from the API is :" + response);
                 // displaying toast message.
-                Toast.makeText(LoginActivity.this, "Data posted succesfully..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Data posted successfully..", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
