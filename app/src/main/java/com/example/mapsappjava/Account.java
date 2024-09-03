@@ -16,6 +16,13 @@ public class Account {
         this.password = setPassword;
     }
 
+    public Account(String firstName, String secondName, String email) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+
+    }
+
     public String getEmail() {
         return email;
     }

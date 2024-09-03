@@ -3,6 +3,7 @@ package com.example.mapsappjava;
 import static com.example.mapsappjava.NukeSSLCerts.nuke;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,7 +16,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,6 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                 responseTV.setText("Response from the API is :" + response);
                 // displaying toast message.
                 Toast.makeText(LoginActivity.this, "Data posted successfully..", Toast.LENGTH_SHORT).show();
+                Log.d("Response", response.toString());
+                try {
+                    Account loggedInAccount = new Account(response.getString("first_name"),response.getString("surname"),
+                            response.getString("email"));
+                    Log.d("Account", loggedInAccount.accountToString());
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                };
+
+
             }
         }, new Response.ErrorListener() {
             @Override
