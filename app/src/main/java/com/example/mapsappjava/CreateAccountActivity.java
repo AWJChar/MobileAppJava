@@ -1,6 +1,5 @@
 package com.example.mapsappjava;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

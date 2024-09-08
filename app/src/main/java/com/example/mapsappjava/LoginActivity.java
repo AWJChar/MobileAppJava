@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressBar loadingPB;
     private TextView responseTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         postDataUsingVolley(username,password);
     }
 
-    private void postDataUsingVolley(String name, String job) {
+    private void postDataUsingVolley(String name, String password) {
 
         nuke();
         // on below line specifying the url at which we have to make a post request
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject postData = new JSONObject();
         try {
             postData.put("email", name);
-            postData.put("password", job);
+            postData.put("password", password);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -79,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("Account", loggedInAccount.accountToString());
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
-                };
+                }
 
 
             }

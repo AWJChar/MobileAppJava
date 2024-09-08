@@ -54,6 +54,11 @@
             android:label="LoginActivity" />
 
         <activity
+            android:name=".RoutesActivity"
+            android:exported="false"
+            android:label="RoutesActivity" />
+
+        <activity
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />

@@ -30,4 +30,10 @@ public class MainActivity extends AppCompatActivity {
        Intent createAccountIntent = new Intent(this, CreateAccountActivity.class);
        startActivity(createAccountIntent);
    }
+
+    public void switchToRoutes(View V){
+        Intent createAccountIntent = new Intent(this, RoutesActivity.class);
+        startActivity(createAccountIntent);
+    }
+
 }
