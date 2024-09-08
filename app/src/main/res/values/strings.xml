@@ -13,4 +13,5 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="menu">Menu</string>
     <string name="routes">Routes</string>
+    <string name="response_API">Response from the API is :</string>
 </resources>

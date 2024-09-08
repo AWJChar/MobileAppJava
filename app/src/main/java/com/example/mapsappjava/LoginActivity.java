@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 // channing progress bar visibility on below line.
                 loadingPB.setVisibility(View.GONE);
                 // setting response to text view.
-                responseTV.setText("Response from the API is :" + response);
+                responseTV.setText(getString(R.string.response_API) + response);
                 // displaying toast message.
                 Toast.makeText(LoginActivity.this, "Data posted successfully..", Toast.LENGTH_SHORT).show();
                 Log.d("Response", response.toString());
