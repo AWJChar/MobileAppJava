@@ -1,25 +1,33 @@
 [versions]
 agp = "8.5.0"
+commonsIo = "1.3.2"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
+permissionUtils = "2.0.7"
+playServicesLocationVersion = "20.0.0"
 playServicesMaps = "18.2.0"
 constraintlayout = "2.1.4"
+playServicesMapsVersion = "18.0.2"
 volley = "1.2.1"
 playServicesLocation = "21.3.0"
 firebaseFirestore = "25.1.0"
 
 [libraries]
+commons-io = { module = "org.apache.commons:commons-io", version.ref = "commonsIo" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+permission-utils = { module = "rebus:permission-utils", version.ref = "permissionUtils" }
+play-services-location-v2000 = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+play-services-maps-v1802 = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
 volley = { module = "com.android.volley:volley", version.ref = "volley" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
