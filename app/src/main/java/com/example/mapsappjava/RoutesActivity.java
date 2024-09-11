@@ -2,7 +2,9 @@ package com.example.mapsappjava;
 
 import static com.example.mapsappjava.NukeSSLCerts.nuke;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -57,10 +59,16 @@ public class RoutesActivity extends AppCompatActivity {
                     Route route = new Route();
                     route.setRouteName(object.getString("name"));
                     route.setCoordPlaceHolder(object.getString("waypoints"));
+                    route.setEmail(object.getString("email"));
+                    route.waypointsToCoordinates();
                     Log.d("Route", response);
+                    Intent intent = new Intent(RoutesActivity.this, MapsActivity.class);
+                    intent.putExtra("route", route);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override

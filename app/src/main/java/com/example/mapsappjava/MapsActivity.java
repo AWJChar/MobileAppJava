@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -34,7 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final int FINE_PERMISSION_CODE = 1;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
-
+    ArrayList<LatLng> mapCoordinates = new ArrayList<>();
+    ArrayList<Waypoint> mapCoordinatesPlaceholder= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void getLastLocation() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
             return;
         }
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
@@ -75,24 +77,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
 
             return;
         }
-
-        ArrayList<LatLng> coordinates = new ArrayList<>();
-        coordinates.add(new LatLng(51.757584,-2.310071));
-        coordinates.add(new LatLng(51.757198,-2.310998));
-        coordinates.add(new LatLng(51.757401,-2.31166));
-        coordinates.add(new LatLng(53.757401,-1.31166));
+        Route routeDetails = (Route)getIntent().getSerializableExtra("route");
 
 
+        //mapCoordinatesPlaceholder = routeDetails.getCoordinates();
+        Log.d("coordsMain1", routeDetails.getCoordinates().toString());
+
+        for (int i = 0; i < routeDetails.getCoordinates().size(); i++) {
+            double lat = routeDetails.getCoordinates().get(i).getLat();
+            double lon = routeDetails.getCoordinates().get(i).getLon();
+            mapCoordinates.add(new LatLng(lat, lon));
+        }
+
+        Log.d("coordsMain2", mapCoordinates.toString());
 
         PolylineOptions route = new PolylineOptions()
-                .addAll(coordinates);
+               .addAll(mapCoordinates);
 
         Polyline routeLine = mMap.addPolyline(route);
         routeLine.setTag("Home Tag");
