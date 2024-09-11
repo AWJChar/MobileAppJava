@@ -51,7 +51,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
     }
 
     private void getLastLocation() {
@@ -102,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                .addAll(mapCoordinates);
 
         Polyline routeLine = mMap.addPolyline(route);
-        routeLine.setTag("Home Tag");
+        routeLine.setTag("Home Route");
 
 
         mMap.setMyLocationEnabled(true);
