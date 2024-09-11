@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
@@ -39,44 +40,40 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.password_input);
         String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
-        postDataUsingVolley(username,password);
+        getUserDetails(username,password);
     }
 
-    private void postDataUsingVolley(String name, String password) {
+    private void getUserDetails(String email, String password) {
 
         nuke();
-        // on below line specifying the url at which we have to make a post request
-        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/login";
-        // setting progress bar visibility on below line.
+
+        String detailsAppend = ("?email=" + email.toLowerCase() + "&password=" + password);
+
+        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/login" + detailsAppend;
+
         loadingPB.setVisibility(View.VISIBLE);
-        // creating a new variable for our request queue
+
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
 
-        JSONObject postData = new JSONObject();
-        try {
-            postData.put("email", name);
-            postData.put("password", password);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         // making a string request on below line.
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+        StringRequest request = new StringRequest(Request.Method.GET, url,  new Response.Listener<String>() {
 
 
             @Override
-            public void onResponse(JSONObject response) {
-                // channing progress bar visibility on below line.
+            public void onResponse(String response) {
+
                 loadingPB.setVisibility(View.GONE);
-                // setting response to text view.
                 responseTV.setText(getString(R.string.response_API) + response);
-                // displaying toast message.
+
                 Toast.makeText(LoginActivity.this, "Data posted successfully..", Toast.LENGTH_SHORT).show();
                 Log.d("Response", response.toString());
+
                 try {
-                    Account loggedInAccount = new Account(response.getString("first_name"),response.getString("surname"),
-                            response.getString("email"));
+                    JSONObject object = new JSONObject(response);
+                    Account loggedInAccount = new Account(object.getString("first_name"),
+                            object.getString("surname"), object.getString("email"));
+
                     Log.d("Account", loggedInAccount.accountToString());
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

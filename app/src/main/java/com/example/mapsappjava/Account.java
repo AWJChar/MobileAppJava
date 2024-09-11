@@ -23,6 +23,9 @@ public class Account {
 
     }
 
+    public Account() {
+    }
+
     public String getEmail() {
         return email;
     }

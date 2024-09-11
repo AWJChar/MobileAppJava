@@ -1,17 +1,22 @@
 package com.example.mapsappjava;
 
-public class Route {
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.maps.model.LatLng;
+import java.util.ArrayList;
+
+public class Route extends AppCompatActivity {
 
     private String routeName;
     private double distance;
-    //private x routeCoordinates;
+    ArrayList<LatLng> coordinates = new ArrayList<>();
+    private String coordPlaceHolder;
 
-    public Route(String routeName, double distance/*, x routeCoordinates*/) {
+    public Route(String routeName, double distance, ArrayList<LatLng> coordinates) {
         this.routeName = routeName;
         this.distance = distance;
-        //this.routeCoordinates = routeCoordinates;
-
+        this.coordinates = coordinates;
     }
+    public Route() {}
 
     public void setDistance(double distance) {
         this.distance = distance;
@@ -21,11 +26,13 @@ public class Route {
         this.routeName = routeName;
     }
 
-    /*
-    public void setRouteCoordinates(x routeCoordinates) {
-        this.routeCoordinates = routeCoordinates;
+    public ArrayList<LatLng> getCoordinates() {
+        return coordinates;
     }
-    */
+
+    public void setCoordinates(ArrayList<LatLng> coordinates) {
+        this.coordinates = coordinates;
+    }
 
     public double getDistance() {
         return distance;
@@ -34,4 +41,14 @@ public class Route {
     public String getRouteName() {
         return routeName;
     }
+
+    public void setCoordPlaceHolder(String coordPlaceHolder) {
+        this.coordPlaceHolder = coordPlaceHolder;
+    }
+
+    public String getCoordPlaceHolder() {
+        return coordPlaceHolder;
+    }
+
+
 }

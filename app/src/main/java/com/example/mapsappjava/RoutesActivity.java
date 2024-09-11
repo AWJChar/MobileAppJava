@@ -1,16 +1,29 @@
 package com.example.mapsappjava;
 
+import static com.example.mapsappjava.NukeSSLCerts.nuke;
+
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.model.LatLng;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class RoutesActivity extends AppCompatActivity {
 
-    private ArrayList<LatLng> routeCoords = new ArrayList<>();
+    private Route route;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +31,43 @@ public class RoutesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_routes);
     }
 
+    public void makeRoute(View view) {
 
+        getRouteDetails("Home_Route");
+        Log.d("Route", "makeRoute: works");
+
+    }
+
+    public void getRouteDetails(String routeName) {
+
+        nuke();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        String routeNameAppend = ("?routeName=" + routeName);
+
+        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/routes" + routeNameAppend;
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    Route route = new Route();
+                    route.setRouteName(object.getString("name"));
+                    route.setCoordPlaceHolder(object.getString("waypoints"));
+                    Log.d("Route", response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error", error.toString());
+            }
+        });
+        queue.add(request);
+    }
 }
