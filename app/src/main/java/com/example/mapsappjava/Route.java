@@ -52,6 +52,7 @@ public class Route extends AppCompatActivity  implements Serializable  {
     }
 
     public String getCoordPlaceHolder() {
+
         return coordPlaceHolder;
     }
 

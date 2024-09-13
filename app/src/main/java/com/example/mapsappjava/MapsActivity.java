@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.mapsappjava.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.Polyline;
@@ -36,7 +37,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     ArrayList<LatLng> mapCoordinates = new ArrayList<>();
-    ArrayList<Waypoint> mapCoordinatesPlaceholder= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -85,25 +87,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         Route routeDetails = (Route)getIntent().getSerializableExtra("route");
 
-
-        //mapCoordinatesPlaceholder = routeDetails.getCoordinates();
-        Log.d("coordsMain1", routeDetails.getCoordinates().toString());
-
         for (int i = 0; i < routeDetails.getCoordinates().size(); i++) {
             double lat = routeDetails.getCoordinates().get(i).getLat();
             double lon = routeDetails.getCoordinates().get(i).getLon();
             mapCoordinates.add(new LatLng(lat, lon));
         }
 
-        Log.d("coordsMain2", mapCoordinates.toString());
-
         PolylineOptions route = new PolylineOptions()
                .addAll(mapCoordinates);
 
         Polyline routeLine = mMap.addPolyline(route);
-        routeLine.setTag("Home Route");
 
+        LatLngBounds routeBounds = new LatLngBounds(mapCoordinates.get(0), mapCoordinates.get(mapCoordinates.size()-1));
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 400));
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);

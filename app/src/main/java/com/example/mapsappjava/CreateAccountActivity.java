@@ -2,6 +2,7 @@ package com.example.mapsappjava;
 
 import static com.example.mapsappjava.NukeSSLCerts.nuke;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,14 +70,14 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(CreateAccountActivity.this, "Data posted Succesfully!", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CreateAccountActivity.this, "Fail to post data..", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(request);
+        Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }

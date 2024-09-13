@@ -33,11 +33,11 @@ public class RoutesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_routes);
     }
 
-    public void makeRoute(View view) {
-
-        getRouteDetails("Home_Route");
-        Log.d("Route", "makeRoute: works");
-
+    public void buttonClick(View view) {
+        Button button = (Button) view;
+        String buttonText = button.getText().toString();
+        Log.d("buttonclick", buttonText);
+        getRouteDetails(buttonText);
     }
 
     public void getRouteDetails(String routeName) {
