@@ -15,7 +15,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 //Hides loading icon
                 loadingPB.setVisibility(View.GONE);
 
-                Log.d("Response", response.toString());
+                Log.d("Response", response);
 
                 //Takes returned account details and creates JSON object, then creates new account object using retrieved data
                 try {

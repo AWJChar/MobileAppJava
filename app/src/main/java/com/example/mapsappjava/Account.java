@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 
 public class Account {
 
-    private String firstName;
-    private String secondName;
-    private String email;
+    private final String firstName;
+    private final String secondName;
+    private final String email;
     private String password;
 
     //Setter for creating account

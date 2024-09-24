@@ -31,8 +31,6 @@ import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
-    private GoogleMap mMap;
-    private ActivityMapsBinding binding;
     private final int FINE_PERMISSION_CODE = 1;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -43,13 +41,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        com.example.mapsappjava.databinding.ActivityMapsBinding binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
     }
 
@@ -78,9 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //Controls the map view, displays the route and info points
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
 
-        mMap = googleMap;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -107,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Checks if LatLng object has info and adds it to the map
             if (!info.equals("null")) {
                 Log.d("RouteInfo2", info);
-                mMap.addMarker(new MarkerOptions()
+                googleMap.addMarker(new MarkerOptions()
                         .position(new LatLng(lat, lon))
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                         .title(info));
@@ -117,16 +114,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Creates polyline obj and adds route line to the map
         PolylineOptions route = new PolylineOptions()
                .addAll(mapCoordinates);
-        Polyline routeLine = mMap.addPolyline(route);
+        Polyline routeLine = googleMap.addPolyline(route);
 
         //Zooms map in on loaded route
         LatLngBounds routeBounds = new LatLngBounds(mapCoordinates.get(0), mapCoordinates.get(mapCoordinates.size()-1));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 400));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 400));
 
         //Allows user to view their current location
-        mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationButtonClickListener(this);
-        mMap.setOnMyLocationClickListener(this);
+        googleMap.setMyLocationEnabled(true);
+        googleMap.setOnMyLocationButtonClickListener(this);
+        googleMap.setOnMyLocationClickListener(this);
     }
 
     //Controls initial request to user for location access on their device

@@ -4,9 +4,9 @@ package com.example.mapsappjava;
 import java.io.Serializable;
 
 public class Waypoint implements Serializable {
-    private double lat;
-    private double lon;
-    private String info;
+    private final double lat;
+    private final double lon;
+    private final String info;
 
     //Constructor for Waypoint class, info is left as 'null' by default
     public Waypoint(double lat, double lon, String info) {
