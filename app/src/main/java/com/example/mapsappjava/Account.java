@@ -1,3 +1,4 @@
+/*Stores the user's information when logged in and creating accounts*/
 package com.example.mapsappjava;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ public class Account {
     private String email;
     private String password;
 
+    //Setter for creating account
     public Account(String firstName, String secondName, String email, String setPassword) {
         this.firstName = firstName;
         this.secondName = secondName;
@@ -16,14 +18,12 @@ public class Account {
         this.password = setPassword;
     }
 
+    //Setter for storing logged in account
     public Account(String firstName, String secondName, String email) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
 
-    }
-
-    public Account() {
     }
 
     public String getEmail() {
@@ -40,22 +40,6 @@ public class Account {
 
     public String getPassword() {
         return password;
-    }
-
-    public void SetPassword(String setPassword) {
-        this.password = setPassword;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     @NonNull

@@ -1,3 +1,4 @@
+/*Holds individual route coordinates and their associated info*/
 package com.example.mapsappjava;
 
 import java.io.Serializable;
@@ -5,13 +6,15 @@ import java.io.Serializable;
 public class Waypoint implements Serializable {
     private double lat;
     private double lon;
+    private String info;
 
-    public Waypoint(double lat, double lon) {
+    //Constructor for Waypoint class, info is left as 'null' by default
+    public Waypoint(double lat, double lon, String info) {
 
         this.lat = lat;
         this.lon = lon;
+        this.info = info;
     }
-
 
     public double getLat() {
         return lat;
@@ -21,12 +24,7 @@ public class Waypoint implements Serializable {
         return lon;
     }
 
-    @Override
-    public String toString() {
-        return "Waypoint{" +
-                "lat=" + lat +
-                ", lon=" + lon +
-                '}';
+    public String getInfo() {
+        return info;
     }
-
 }

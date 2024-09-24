@@ -1,3 +1,4 @@
+//Controls basic menu screen which allows user to choose login or create account
 package com.example.mapsappjava;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Loads the MenuActivity view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
@@ -16,24 +18,15 @@ public class MainActivity extends AppCompatActivity {
 
      }
 
-    public void switchToMaps(View v){
-        Intent mapIntent = new Intent(this,MapsActivity.class);
-        startActivity(mapIntent);
-    }
-
+    //Switches to Login Activity view
     public void switchToLogin(View V){
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
     }
 
+    //Switches to Create Account Activity view
     public void switchToCreateAccount(View V){
        Intent createAccountIntent = new Intent(this, CreateAccountActivity.class);
        startActivity(createAccountIntent);
     }
-
-    public void switchToRoutes(View V){
-        Intent createAccountIntent = new Intent(this, RoutesActivity.class);
-        startActivity(createAccountIntent);
-    }
-
 }
