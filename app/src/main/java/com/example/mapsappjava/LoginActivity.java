@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String detailsAppend = ("?email=" + email.toLowerCase() + "&password=" + password);
 
-        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/login" + detailsAppend;
+        String url = "https://ec2-13-60-13-72.eu-north-1.compute.amazonaws.com/login" + detailsAppend;
 
         loadingPB.setVisibility(View.VISIBLE);
 

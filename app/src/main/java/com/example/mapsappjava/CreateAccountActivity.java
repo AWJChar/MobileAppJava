@@ -53,7 +53,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         nuke();
 
-        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/create_user";
+        String url = "https://ec2-13-60-13-72.eu-north-1.compute.amazonaws.com/create_user";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 

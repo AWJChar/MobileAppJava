@@ -48,7 +48,7 @@ public class RoutesActivity extends AppCompatActivity {
 
         String routeNameAppend = ("?routeName=" + routeName);
 
-        String url = "https://ec2-54-191-45-250.us-west-2.compute.amazonaws.com/routes" + routeNameAppend;
+        String url = "https://ec2-13-60-13-72.eu-north-1.compute.amazonaws.com/routes" + routeNameAppend;
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 
