@@ -74,7 +74,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             postData.put("first_name", newAccount.getFirstName());
             postData.put("surname", newAccount.getSecondName());
             postData.put("password", newAccount.getPassword());
-        } catch (JSONException e) {
+        } catch (Exception e) {
             responseTV.setText("Email Already In Use");
         }
 
