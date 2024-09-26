@@ -1,4 +1,4 @@
-/*Holds individual route coordinates and their associated info*/
+/*Holds individual waypoint data*/
 package com.example.mapsappjava;
 
 import java.io.Serializable;

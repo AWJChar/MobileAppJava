@@ -50,25 +50,25 @@
                 android:text="Swansea Route" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/BayCampusRoute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="buttonClick"
-                android:text="Route3" />
+                android:text="Bay Campus Route" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/OgwenRoute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="buttonClick"
-                android:text="Route4" />
+                android:text="Ogwen Route" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/WiltshireRoute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="buttonClick"
-                android:text="Route5" />
+                android:text="Wiltshire Route" />
 
         </LinearLayout>
 

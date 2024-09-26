@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Hides loading icon
                 loadingPB.setVisibility(View.GONE);
-
+                responseTV.setText("");
                 Log.d("Response", response);
 
                 //Takes returned account details and creates JSON object, then creates new account object using retrieved data
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                    responseTV.setText("Incorrect username or password");
                 }
 
 
